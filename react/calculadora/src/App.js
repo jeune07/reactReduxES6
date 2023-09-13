@@ -1,35 +1,57 @@
+import Button from "./Button";
+import Result from "./Result";
+import MathOperations from "./MathOperations";
+import Functions from "./Functions";
+import Numbers from "./Numbers";
 import "./App.css"
+
 const App=()=> {
+  const onClickOperation =()=>{
+    return 0
+  }
+  const onCLickEqual = () =>{
+    return 0
+  }
+  const handlerClick =(text)=>{
+   console.log(text)
+  }
 
   return (
     <div className="react-calculator">
-      <div className="result"></div>
-      <div className="numbers">
-            <button>1</button>
-            <button>2</button>
-            <button>3</button>
-            <button>4</button>
-            <button>5</button>
-            <button>6</button>
-            <button>7</button>
-            <button>8</button>
-            <button>9</button>
-            <button>0</button>
-      </div > 
+      <Result result ={undefined}/>
+          <Numbers onClickNumbers={number =>
+          console.log("the opration is :", number)
+        } 
+        />
+    
       
       <div className="math-operations">
-        <button>+</button>
-        <button>*</button>
-        <button>-</button>
-        <button>/</button>
-        <button>=</button>
+        <MathOperations onClickOperation={operation =>
+          console.log("the opration is :", operation)
+        } 
+
+        onCLickEqual ={ (equal)=>{
+          console.log("Egual:",equal)
+        }}
+        />
+
       </div>
       <div className="functions">
-        <button>clear</button>
-        <button>remove</button>
+        
+        <Functions   onCOntententClear={(cler) =>
+          console.log("You are cleaning :", cler)
+        } 
+        onDelete ={ (del) => 
+          console.log("you are removing",del)
+        }
+        
+       />
+          
+        
+
       </div> 
         
-      </div>
+  </div>
   );
 }
 
