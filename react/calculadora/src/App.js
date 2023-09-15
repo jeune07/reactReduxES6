@@ -4,51 +4,48 @@ import MathOperations from "./MathOperations";
 import Functions from "./Functions";
 import Numbers from "./Numbers";
 import "./App.css"
+import { useState } from "react";
 
 const App=()=> {
-  const onClickOperation =()=>{
-    return 0
-  }
-  const onCLickEqual = () =>{
-    return 0
-  }
-  const handlerClick =(text)=>{
-   console.log(text)
-  }
 
+const [result, setResult]=useState("")
   return (
     <div className="react-calculator">
-      <Result result ={undefined}/>
-          <Numbers onClickNumbers={number =>
-          console.log("the opration is :", number)
-        } 
-        />
-    
-      
+      <Result value ={result} onChange={setResult}/>
+          <Numbers onClickNumbers={(number)=>{
+            setResult("")
+            setResult(`${result}${number}`)
+          }
+          }
+      />
       <div className="math-operations">
-        <MathOperations onClickOperation={operation =>
-          console.log("the opration is :", operation)
+        <MathOperations onClickOperation={(operation)=>{
+          setResult(`${result}${operation}`)
+        }
         } 
 
         onCLickEqual ={ (equal)=>{
-          console.log("Egual:",equal)
+          setResult(eval(result).toString())
+          
         }}
         />
 
       </div>
       <div className="functions">
         
-        <Functions   onCOntententClear={(cler) =>
-          console.log("You are cleaning :", cler)
-        } 
-        onDelete ={ (del) => 
-          console.log("you are removing",del)
+        <Functions   onCOntententClear={(cler) =>{
+       
+        setResult("")
+          
+        } }
+        onDelete ={ (del) => {
+          let delString =result.substr(0,result.length-1)
+          setResult(delString)
+          
+        }
         }
         
        />
-          
-        
-
       </div> 
         
   </div>
